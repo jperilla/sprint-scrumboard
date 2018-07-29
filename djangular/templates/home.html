@@ -13,11 +13,12 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static "/css/scrumboard.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/scrumboard.css" %}">
   </head>
   <body ng-app="scrumboard">
-
-    <ng-view></ng-view>
+    <div class="container-fluid">
+      <ng-view></ng-view>
+    </div>
 
     <!-- JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

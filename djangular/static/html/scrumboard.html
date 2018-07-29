@@ -1,47 +1,65 @@
-<section class="header">
-  <div id="account">
-    <span>Hi, {{ user.username }}!</span>
-    <button  ng-click="logout()">Logout</button>
-  </div>
-</section>
-<section class="list-container slider">
-  <div class="list" ng-repeat="list in data">
-    <h3>{{ list.name }}</h3>
-    <span class="show-filters">
-      <button ng-click="showFilters=!showFilters">
-          Filters {{ showFilters ? "&#9650;" : "&#9660;" }}
-      </button>
-    </span>
-    <div class="list-sort" ng-show="showFilters">
-      <hr>
-      <table>
-        <tr>
-          <td><label>Sort: </label></td>
-          <td>
-            <select ng-model="sortBy">
-              <option value="title">Title</option>
-              <option value="story_points">Story Points</option>
-              <option value="business_Value">Business Value</option>
-            </select>
-            <input type="checkbox" ng-model="reverse">
-            <label>Reverse</label>
-          </td>
-        </tr>
-        <tr>
-          <td><label>Filter: </label></td>
-          <td class="flex"><input type="text" ng-model="filterBy" /></td>
-        </tr>
-      </table>
-      <hr>
-    </div>
-    <ul>
-      <li ng-repeat="card in list.cards | filter:filterBy | orderBy:sortBy:reverse">
-        <scrumboard-card></scrumboard-card>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Sprint</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="#" class="text-light nav-link">Hi, {{ user.username }}!</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" ng-click="logout()">Logout</a>
       </li>
     </ul>
-    <div class="flex">
-      <input type="text" ng-model="new_title" />
-      <button ng-click="add(list, new_title)">+</button>
+  </div>
+</nav>
+<section>
+  <div class="row flex-nowrap">
+    <div ng-repeat="list in data" class="col">
+      <div class="card border-primary">
+        <div class="card-body">
+          <h5 class="card-title">{{ list.name }}</h5>
+          <span class="show-filters">
+            <button type="button" class="btn btn-light" ng-click="showFilters=!showFilters">
+                Filters {{ showFilters ? "&#9650;" : "&#9660;" }}
+            </button>
+          </span>
+          <div ng-show="showFilters">
+            <hr>
+            <table>
+              <tr>
+                <td><label>Sort: </label></td>
+                <td>
+                  <select ng-model="sortBy">
+                    <option value="title">Title</option>
+                    <option value="story_points">Story Points</option>
+                    <option value="business_Value">Business Value</option>
+                  </select>
+                  <input type="checkbox" ng-model="reverse">
+                  <label>Reverse</label>
+                </td>
+              </tr>
+              <tr>
+                <td><label>Filter: </label></td>
+                <td class="flex"><input type="text" ng-model="filterBy" /></td>
+              </tr>
+            </table>
+            <hr>
+
+          </div>
+          <ul class="list-unstyled">
+            <li ng-repeat="card in list.cards | filter:filterBy | orderBy:sortBy:reverse">
+              <scrumboard-card></scrumboard-card>
+            </li>
+          </ul>
+          <div>
+            <input type="text" ng-model="new_title" />
+            <button ng-click="add(list, new_title)">+</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

@@ -23,6 +23,7 @@
         $http.post('/scrumboard_api/cards/', card)
           .then(function(response) {
             list.cards.push(response.data);
+            $scope.new_title = '';
           },
           function() {
             alert("Could not create card!")
